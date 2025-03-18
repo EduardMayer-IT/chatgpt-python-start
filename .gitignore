@@ -18,3 +18,4 @@ libreoffice-venv/
 
 # Sonstiges
 *.log
+*.py~
