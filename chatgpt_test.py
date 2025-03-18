@@ -2,11 +2,14 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 
-# .env laden
 load_dotenv()
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+api_key = os.getenv("OPENAI_API_KEY")
+
 def frage_chatgpt(frage):
+    if not api_key:
+        return "✅ Testmodus aktiv – keine echte API-Antwort."
+    client = OpenAI(api_key=api_key)
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -16,6 +19,8 @@ def frage_chatgpt(frage):
     )
     return response.choices[0].message.content
 
-antwort = frage_chatgpt("Erkläre mir kurz, was Python ist.")
-print("Antwort von ChatGPT:")
-print(antwort)
+# Test
+antwort = frage_chatgpt("Erklär mir Python!")
+print("Antwort:", antwort)
+
+
