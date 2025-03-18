@@ -1,5 +1,5 @@
-# Dieses Skript nutzt die OpenAI API und unterstützt einen Testmodus
-# Dieses Skript nutzt die OpenAI API und unterstützt einen Testmodus
+# Dieses Skript nutzt die OpenAI API und unterstützt einen Testmodus.
+# Im Testmodus entstehen keine Kosten. Bei aktivem API-Key wird die API genutzt.
 
 import os
 from openai import OpenAI
@@ -9,9 +9,16 @@ load_dotenv()
 
 api_key = os.getenv("OPENAI_API_KEY")
 
+# Sicherer Check: auch leere Einträge abfangen
+if not api_key or api_key.strip() == "":
+    print("⚠️ Testmodus aktiv – es entstehen keine API-Kosten.")
+    api_key = None  # API-Key sicher auf None setzen
+else:
+    print("ℹ️ OpenAI API aktiv – jede Anfrage zählt als API-Aufruf.")
+
 def frage_chatgpt(frage):
     if not api_key:
-        return "✅ Testmodus aktiv – keine echte API-Antwort."
+        return "✅ Testmodus aktiv – dies ist eine simulierte Antwort."
     client = OpenAI(api_key=api_key)
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -22,7 +29,17 @@ def frage_chatgpt(frage):
     )
     return response.choices[0].message.content
 
-# Test
+# Einmaliger Testaufruf
 antwort = frage_chatgpt("Erklär mir Python!")
 print("Antwort:", antwort)
 
+# Chat-Schleife
+if __name__ == "__main__":
+    print("Willkommen im Chat! Schreibe 'exit' zum Beenden.")
+    while True:
+        frage = input("Du: ")
+        if frage.lower() in ["exit", "quit", "stop"]:
+            print("Chat beendet.")
+            break
+        antwort = frage_chatgpt(frage)
+        print(f"ChatGPT: {antwort}\n")
