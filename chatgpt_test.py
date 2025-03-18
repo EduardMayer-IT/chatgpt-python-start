@@ -1,3 +1,6 @@
+# Dieses Skript nutzt die OpenAI API und unterstützt einen Testmodus
+# Dieses Skript nutzt die OpenAI API und unterstützt einen Testmodus
+
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -22,5 +25,4 @@ def frage_chatgpt(frage):
 # Test
 antwort = frage_chatgpt("Erklär mir Python!")
 print("Antwort:", antwort)
-
 
