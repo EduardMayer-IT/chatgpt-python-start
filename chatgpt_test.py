@@ -33,6 +33,11 @@ def frage_chatgpt(frage):
 antwort = frage_chatgpt("Erklär mir Python!")
 print("Antwort:", antwort)
 
+with open("chat_log.txt", "a") as log:
+    log.write(f"Du: {frage}\n")
+    log.write(f"ChatGPT: {antwort}\n\n")
+
+
 # Chat-Schleife
 if __name__ == "__main__":
     print("Willkommen im Chat! Schreibe 'exit' zum Beenden.")

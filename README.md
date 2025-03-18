@@ -22,3 +22,10 @@ Das Skript lädt den API-Key sicher aus einer `.env`-Datei und führt einen Chat
 ## 📎 Autor
 Eduard Mayer  
 GitHub: [https://github.com/EduardMayer-IT](https://github.com/EduardMayer-IT)
+
+## 🔄 Testmodus (API-kostenfrei testen)
+Das Skript erkennt automatisch, ob ein OpenAI API-Key vorhanden ist. 
+Fehlt der Schlüssel oder ist die `.env` leer, läuft das Skript im **Testmodus**:
+- Keine Verbindung zur OpenAI API
+- Keine Kosten
+- Simulierte Antworten im Chat
