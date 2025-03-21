@@ -48,3 +48,8 @@ if __name__ == "__main__":
             break
         antwort = frage_chatgpt(frage)
         print(f"ChatGPT: {antwort}\n")
+
+# Chat-Verlauf in Datei speichern
+    with open("chat_log.txt", "a", encoding="utf-8") as log_file:
+        log_file.write(f"Du: {frage}\n")
+        log_file.write(f"ChatGPT: {antwort}\n\n")      
