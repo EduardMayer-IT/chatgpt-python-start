@@ -4,6 +4,8 @@
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
+from datetime import datetime
+
 
 load_dotenv()
 
@@ -49,7 +51,9 @@ if __name__ == "__main__":
         antwort = frage_chatgpt(frage)
         print(f"ChatGPT: {antwort}\n")
 
-# Chat-Verlauf in Datei speichern
-    with open("chat_log.txt", "a", encoding="utf-8") as log_file:
-        log_file.write(f"Du: {frage}\n")
-        log_file.write(f"ChatGPT: {antwort}\n\n")      
+# Chat-Verlauf in Datei speichern mit Zeitstempel
+with open("chat_log.txt", "a", encoding="utf-8") as log_file:
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_file.write(f"[{timestamp}] Du: {frage}\n")
+    log_file.write(f"[{timestamp}] ChatGPT: {antwort}\n\n")
+     
