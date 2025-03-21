@@ -6,15 +6,12 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from datetime import datetime
 
-
 load_dotenv()
-
 api_key = os.getenv("OPENAI_API_KEY")
 
-# Sicherer Check: auch leere Einträge abfangen
 if not api_key or api_key.strip() == "":
     print("⚠️ Testmodus aktiv – es entstehen keine API-Kosten.")
-    api_key = None  # API-Key sicher auf None setzen
+    api_key = None
 else:
     print("ℹ️ OpenAI API aktiv – jede Anfrage zählt als API-Aufruf.")
 
@@ -31,18 +28,7 @@ def frage_chatgpt(frage):
     )
     return response.choices[0].message.content
 
-# Einmaliger Testaufruf
-antwort = frage_chatgpt("Erklär mir Python!")
-print("Antwort:", antwort)
-
-with open("chat_log.txt", "a") as log:
-    log.write(f"Du: {frage}\n")
-    log.write(f"ChatGPT: {antwort}\n\n")
-
-
-# Chat-Schleife
 if __name__ == "__main__":
-    # Nur wenn die Datei direkt ausgeführt wird
     print("Willkommen im Chat! Schreibe 'exit' zum Beenden.")
     while True:
         frage = input("Du: ")
@@ -53,8 +39,6 @@ if __name__ == "__main__":
         antwort = frage_chatgpt(frage)
         print(f"ChatGPT: {antwort}\n")
 
-        # Chat-Verlauf in Datei speichern mit Zeitstempel
-        from datetime import datetime
         with open("chat_log.txt", "a", encoding="utf-8") as log_file:
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             log_file.write(f"[{timestamp}] Du: {frage}\n")
