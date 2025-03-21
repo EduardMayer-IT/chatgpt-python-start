@@ -20,3 +20,4 @@ libreoffice-venv/
 *.log
 *.py~
 venv/
+chat_log.txt
