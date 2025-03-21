@@ -29,3 +29,21 @@ Fehlt der Schlüssel oder ist die `.env` leer, läuft das Skript im **Testmodus*
 - Keine Verbindung zur OpenAI API
 - Keine Kosten
 - Simulierte Antworten im Chat
+
+## 📋 Funktionen
+
+- Kommunikation mit der OpenAI API
+- Vollständiger Testmodus ohne API-Kosten
+- Speicherung des gesamten Chat-Verlaufs in `chat_log.txt`
+- Erweiterbar um Zeiterfassung und weitere Features
+
+## 🛠 Testmodus (kostenfrei)
+Falls kein API-Key in der `.env` hinterlegt ist, arbeitet das Skript im **Testmodus**:
+- Keine Verbindung zur OpenAI API
+- Keine Kosten
+- Simulierte Antworten im Terminal und in der Log-Datei
+
+## 🗒 Chat-Logging
+Jede Unterhaltung wird automatisch in der Datei `chat_log.txt` gespeichert:
+- Frage und Antwort werden protokolliert
+- Optional mit Zeitstempel erweiterbar
