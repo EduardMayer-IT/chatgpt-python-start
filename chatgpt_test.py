@@ -42,6 +42,7 @@ with open("chat_log.txt", "a") as log:
 
 # Chat-Schleife
 if __name__ == "__main__":
+    # Nur wenn die Datei direkt ausgeführt wird
     print("Willkommen im Chat! Schreibe 'exit' zum Beenden.")
     while True:
         frage = input("Du: ")
